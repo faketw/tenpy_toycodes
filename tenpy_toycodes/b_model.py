@@ -50,7 +50,7 @@ class TFIModel:
 
     def init_H_bonds(self):
         """Initialize `H_bonds` hamiltonian.
-
+        # H_bonds consists of two sites operators
         Called by __init__().
         """
         X, Z, Id = self.sigmax, self.sigmaz, self.id

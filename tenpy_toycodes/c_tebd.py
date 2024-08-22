@@ -25,6 +25,17 @@ def run_TEBD(psi, U_bonds, N_steps, chi_max, eps):
     """Evolve for `N_steps` time steps with TEBD."""
     Nbonds = psi.L - 1 if psi.bc == 'finite' else psi.L
     assert len(U_bonds) == Nbonds
+    """ First do even two-site (imaginary) time evolutoin, then do odd two-site (imaginary) time evolution.
+    Do this repeatedly for `N_steps` times.
+           ***********
+           ***********  
+        |    |    |    |
+        |    |    |    | 
+      ********** **********
+      ********** **********
+        |    |    |    |
+        |    |    |    |
+    """
     for n in range(N_steps):
         for k in [0, 1]:  # even, odd
             for i_bond in range(k, Nbonds, 2):
